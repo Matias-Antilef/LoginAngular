@@ -19,7 +19,7 @@ export class AuthService {
       .pipe(
         tap((response) => {
           if (response.accessToken) {
-            console.log(response.accessToken);
+            this.setToken(response.accessToken);
           }
         })
       );
