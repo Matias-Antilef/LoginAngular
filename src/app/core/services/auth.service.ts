@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
+import { AuthResponseModel } from '../models/auth-response.model';
 
 @Injectable({
   providedIn: 'root',
@@ -12,9 +13,9 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient, private router: Router) {}
 
-  login(username: string, password: string): Observable<any> {
+  login(username: string, password: string): Observable<AuthResponseModel> {
     return this.httpClient
-      .post<any>(this.LOGIN_URL, { username, password })
+      .post<AuthResponseModel>(this.LOGIN_URL, { username, password })
       .pipe(
         tap((response) => {
           if (response.accessToken) {
